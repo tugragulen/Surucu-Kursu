@@ -1,9 +1,10 @@
 import './App.css';
+import ResponsiveAppBar from "./navbar/ResponsiveAppBar";
 
 function App() {
     return (
         <div className="App">
-            Merhaba
+            <ResponsiveAppBar/>
         </div>
     );
 }
