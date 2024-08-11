@@ -2,7 +2,7 @@ import './App.css';
 import Homepage from "./pages/Homepage";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import AboutUs from "./pages/AboutUs";
-import Education from "./pages/Education";
+import Education from "./pages/education/Education";
 import Photos from "./pages/Photos";
 import Videos from "./pages/Videos";
 import Contact from "./pages/Contact";

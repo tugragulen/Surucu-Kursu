@@ -94,6 +94,7 @@ const ResponsiveNavBar = () => {
                             <MenuList>
                                 {pages.map((page) => (
                                     <MenuItem
+                                        key={page.name}
                                         onClick={() => {
                                             handleClickTab(page)
                                         }}
