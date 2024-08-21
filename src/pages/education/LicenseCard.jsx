@@ -51,8 +51,8 @@ const LicenseCard = ({licenseType}) => {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    {licenseType.contentText.map((text) => (
-                        <Typography paragraph>
+                    {licenseType.contentText.map((text, index) => (
+                        <Typography paragraph key={`${licenseType.title}-text-paragraph-${index + 1}`}>
                             {text}
                         </Typography>
                     ))}
