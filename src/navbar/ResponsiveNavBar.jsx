@@ -8,6 +8,7 @@ import Logo from '../img/kurs.png';
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu"
 import {useLocation, useNavigate} from "react-router-dom";
+import {useWindowSize} from "../hooks/useWindowSize";
 
 const pages = [
     {
@@ -44,6 +45,7 @@ const ResponsiveNavBar = () => {
     const navigate = useNavigate();
     const [anchorNav, setAnchorNav] = useState(null);
     const location = useLocation();
+    const windowSize = useWindowSize();
 
     const handleClickTab = (page) => {
         navigate(page.url);
@@ -58,9 +60,9 @@ const ResponsiveNavBar = () => {
     return (
         <AppBar position={"sticky"} sx={{backgroundColor: 'white', opacity: 0.9}}>
             <Toolbar>
-                <Box display={'flex'} justifyContent={'space-between'} width={"97%"}>
+                <Box display={'flex'} justifyContent={'space-between'} width={"100%"}>
                     <IconButton disableRipple={true} size={"large"} edge={"start"} color={"inherit"} aria-label={"logo"}
-                                sx={{display: {xs: 'none', md: 'flex'}}}
+                                sx={{display: windowSize.width >= 1270 ? "flex": "none"}}
                                 onClick={() => {
                                     handleClickTab(pages[0])
                                 }}
@@ -71,11 +73,11 @@ const ResponsiveNavBar = () => {
                              src={Logo}
                         />
                         <Typography variant={"h5"} component={"div"} fontStyle={"italic"} color={'red'}
-                                    sx={{display: {xs: 'none', md: 'flex'}}}>
+                                    sx={{display: windowSize.width >= 1270 ? "flex": "none"}}>
                             "Önce eğitim diyenlerin adresi"
                         </Typography>
                     </IconButton>
-                    <Box sx={{display: {xs: 'none', md: 'flex'}}} alignItems={"center"}>
+                    <Box sx={{display: windowSize.width >= 1270 ? "flex": "none"}} alignItems={"center"}>
                         {pages.map((page) => (
                             <Button
                                 key={page.name}
@@ -98,11 +100,11 @@ const ResponsiveNavBar = () => {
                             </Button>
                         ))}
                     </Box>
-                    <Box sx={{display: {xs: 'flex', md: 'none'}}}>
+                    <Box sx={{display: windowSize.width < 1270 ? "flex": "none"}}>
                         <IconButton disableRipple size={"large"} edge={"start"} onClick={openMenu}>
                             <MenuIcon/>
                         </IconButton>
-                        <Menu open={Boolean(anchorNav)} onClose={closeMenu} sx={{display: {xs: 'flex', md: 'none'}}}>
+                        <Menu open={Boolean(anchorNav)} onClose={closeMenu} sx={{display: windowSize.width < 1270 ? "flex": "none"}}>
                             <MenuList>
                                 {pages.map((page) => (
                                     <MenuItem
@@ -117,7 +119,7 @@ const ResponsiveNavBar = () => {
                             </MenuList>
                         </Menu>
                         <IconButton disableRipple size={"large"} edge={"end"} color={"inherit"} aria-label={"logo"}
-                                    sx={{display: {xs: 'flex', md: 'none'}}}
+                                    sx={{display: windowSize.width < 1270 ? "flex": "none"}}
                                     onClick={() => {
                                         handleClickTab(pages[0])
                                     }}
@@ -128,7 +130,7 @@ const ResponsiveNavBar = () => {
                                  src={Logo}
                             />
                             <Typography variant={"h6"} component={"div"} fontStyle={"italic"} color={'red'}
-                                        sx={{display: {xs: 'flex', md: 'none'}}}>
+                                        sx={{display: windowSize.width < 1270 ? "flex": "none"}}>
                                 "Önce eğitim diyenlerin adresi"
                             </Typography>
                         </IconButton>
