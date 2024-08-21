@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Logo from '../img/kurs.png';
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu"
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const pages = [
     {
@@ -43,6 +43,7 @@ const pages = [
 const ResponsiveNavBar = () => {
     const navigate = useNavigate();
     const [anchorNav, setAnchorNav] = useState(null);
+    const location = useLocation();
 
     const handleClickTab = (page) => {
         navigate(page.url);
@@ -55,12 +56,14 @@ const ResponsiveNavBar = () => {
         setAnchorNav(null);
     }
     return (
-        <AppBar position={"static"} sx={{backgroundColor: 'white'}}>
+        <AppBar position={"sticky"} sx={{backgroundColor: 'white', opacity: 0.9}}>
             <Toolbar>
                 <Box display={'flex'} justifyContent={'space-between'} width={"97%"}>
                     <IconButton disableRipple={true} size={"large"} edge={"start"} color={"inherit"} aria-label={"logo"}
                                 sx={{display: {xs: 'none', md: 'flex'}}}
-                                onClick={() => {handleClickTab(pages[0])}}
+                                onClick={() => {
+                                    handleClickTab(pages[0])
+                                }}
                     >
                         <Box component={"img"}
                              sx={{height: 128}}
@@ -80,7 +83,16 @@ const ResponsiveNavBar = () => {
                                 onClick={() => {
                                     handleClickTab(page)
                                 }}
-                                sx={{my: 2, mx: 1, color: 'red', display: 'block', textTransform:"none !important", height:"fit-content"}}
+                                sx={{
+                                    my: 2,
+                                    mx: 1,
+                                    bgcolor: location.pathname === page.url ? "red": "",
+                                    color: location.pathname === page.url ? "white": "red",
+                                    display: 'block',
+                                    textTransform: "none !important",
+                                    height: "fit-content",
+                                    "&:hover": {backgroundColor: "red", color: "white"}
+                                }}
                             >
                                 <Typography variant={"h6"}>{page.name}</Typography>
                             </Button>
@@ -106,7 +118,9 @@ const ResponsiveNavBar = () => {
                         </Menu>
                         <IconButton disableRipple size={"large"} edge={"end"} color={"inherit"} aria-label={"logo"}
                                     sx={{display: {xs: 'flex', md: 'none'}}}
-                                    onClick={() => {handleClickTab(pages[0])}}
+                                    onClick={() => {
+                                        handleClickTab(pages[0])
+                                    }}
                         >
                             <Box component={"img"}
                                  sx={{height: 128}}

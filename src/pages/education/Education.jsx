@@ -53,7 +53,7 @@ const licenseTypes =
 const Education = () => {
 
     return (
-        <Grid container spacing={2} marginTop={"2%"}>
+        <Grid container spacing={2} marginTop={"1%"}>
             {licenseTypes.map((licenseType) => (
                 <Grid item xs={6}>
                     <LicenseCard licenseType={licenseType}/>
